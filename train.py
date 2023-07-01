@@ -1,6 +1,4 @@
 import argparse
-import numpy as np
-import pandas as pd
 import model.metric as module_metric
 from model.models import SubgroupTE
 from trainer.trainer import Trainer
