@@ -6,9 +6,9 @@ import pandas as pd
 import model.loss as module_loss
 import model.metric as module_metric
 from model.models import SubgroupTE
-from parse_config import ConfigParser
 from trainer.trainer import Trainer
 from utils import Load_split_dataset
+from utils.parse_config import ConfigParser
 
 import torch
 import torch.nn as nn
