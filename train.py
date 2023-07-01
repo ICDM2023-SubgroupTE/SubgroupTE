@@ -1,17 +1,12 @@
 import argparse
-import collections
-import os
 import numpy as np
 import pandas as pd
-import model.loss as module_loss
 import model.metric as module_metric
 from model.models import SubgroupTE
 from trainer.trainer import Trainer
 from utils import Load_split_dataset
 from utils.parse_config import ConfigParser
-
 import torch
-import torch.nn as nn
 
 # fix random seeds for reproducibility
 SEED = 1111
@@ -19,8 +14,7 @@ torch.manual_seed(SEED)
 torch.backends.cudnn.deterministic = False
 torch.backends.cudnn.benchmark = False
 
-
-def main(m_type, config):
+def main(config):
     config, train_set, valid_set, test_set = Load_split_dataset(config)
         
     # build model architecture, initialize weights, then print to console    
@@ -32,7 +26,7 @@ def main(m_type, config):
     logger.info("-"*100)
 
     # get function handles of metrics
-    metrics = [getattr(module_metric, met) for met in ['IPTW', 'Acc_treatment', 'Acc_outcome']]
+    metrics = [getattr(module_metric, met) for met in config['metrics']]
 
     # build optimizer
     trainable_params = filter(lambda p: p.requires_grad, model.parameters())
@@ -64,11 +58,5 @@ if __name__ == '__main__':
     config = ConfigParser.from_args(args)
     config['data_loader']['data'] = params.data
 
-    
-    log = main(params.model, config)
-        
+    log = main(config)
 
-    if os.path.isfile(save_file):
-        save_df.to_csv(save_file, index=False, mode='a', header=False)
-    else:
-        save_df.to_csv(save_file, index=False, header=True)
