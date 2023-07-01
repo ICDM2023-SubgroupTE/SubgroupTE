@@ -33,6 +33,9 @@ pip install -r requirements.txt
 The downloadable versions of both synthetic and semi-synthetic datasets used in the paper can be accesse in the "data" folder. 
 A simulation of the data is included in "train.py".
 
+### OUD dataset
+Please be informed that the dataset utilized in this study is derived from MarketScan claims data. To obtain access to the data, interested parties are advised to contact IBM through the following link: [Insert link for data access].
+
 ## Training and test
 ### Python command
 For training and evaluating the model, run the following code
@@ -41,7 +44,9 @@ The code simulates the synthetic/semi-sythetic datasets.
 # Note: hyper-parameters are included in config/*.json
 python train.py --config 'config/SubgroupTE.json' --data 'IHDP'
 ```
-
+>
+* `data`: from {'synthetic', 'IHDP'}. 
+  
 ### Parameters
 Hyper-parameters are set in config/*.json
 >
