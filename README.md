@@ -44,10 +44,14 @@ The code simulates the synthetic/semi-sythetic datasets.
 # Note: hyper-parameters are included in config/*.json
 python train.py --config 'config/SubgroupTE.json' --data 'IHDP'
 ```
->
-* `data`: from {'synthetic', 'IHDP'}. 
+
   
 ### Parameters
+Hyper-parameters are set in train.py
+>
+* `data`: dataset from {'synthetic', 'IHDP'}.
+* `config`: json file
+
 Hyper-parameters are set in config/*.json
 >
 * `n_samples`: the number of simulated samples (for the synthetic dataset only)
