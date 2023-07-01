@@ -18,7 +18,6 @@ Our model depends on Numpy, scikit-learn, and PyTorch (CUDA toolkit if use GPU).
 >
 * Python 3.9
 * Pytorch 1.10.2
-* torchmetrics 0.7.2
 * Numpy 1.21.2
 * Pandas 1.4.1
 * Scikit-learn 1.0.2
