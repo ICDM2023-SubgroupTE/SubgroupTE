@@ -10,6 +10,8 @@
         "n_clusters": 5,
         "emb_dim": 50,
         "out_dim": 50,
+        "n_layers": 2,
+        "init": "kmeans++"
         "alpha": 1,
         "gamma": 1,
         "beta": 1,
