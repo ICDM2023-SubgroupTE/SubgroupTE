@@ -41,19 +41,19 @@ class Trainer(BaseTrainer):
         y0_outs, y1_outs, t_outs = torch.tensor([]).to(self.device), torch.tensor([]).to(self.device), torch.tensor([]).to(self.device)
         y_trgs, t_trgs, te_trgs = torch.tensor([]).to(self.device), torch.tensor([]).to(dtype=torch.int64).to(self.device), torch.tensor([]).to(self.device)
         assigned_clusters = torch.tensor([]).to(self.device)
-        for index in range(self.train_n_batches):
+        for idx in range(self.train_n_batches):
             self.model.train()
-            x = self.train_set['X'][index*self.batch_size:(index+1)*self.batch_size]
-            x = torch.from_numpy(x).float().to(self.device)
+            x = torch.FloatTensor(
+                    self.train_set['X'][idx*self.batch_size:(idx+1)*self.batch_size]
+                ).to(self.device)
             t = torch.Tensor(
-                    self.train_set['T'][index*self.batch_size:(index+1)*self.batch_size]                    
+                    self.train_set['T'][idx*self.batch_size:(idx+1)*self.batch_size]                    
                 ).to(self.device)            
             y = torch.Tensor(
-                    self.train_set['Y'][index*self.batch_size:(index+1)*self.batch_size]                    
+                    self.train_set['Y'][idx*self.batch_size:(idx+1)*self.batch_size]                    
                 ).to(self.device)
-            
             te = torch.Tensor(
-                    self.train_set['TE'][index*self.batch_size:(index+1)*self.batch_size]                    
+                    self.train_set['TE'][idx*self.batch_size:(idx+1)*self.batch_size]                    
                 ).to(self.device)
 
             self.optimizer.zero_grad()
@@ -65,23 +65,20 @@ class Trainer(BaseTrainer):
             if index % self.log_step == 0:
                 self.logger.debug('Train Epoch: {} {} Loss: {:.6f} '.format(
                     epoch,
-                    self._progress(index),
+                    self._progress(idx),
                     loss.item(),
                 ))
                 
             clusters = torch.argmax(clusters, dim=1)
             assigned_clusters = torch.cat([assigned_clusters, clusters], 0)
             
-            y0_outs = torch.cat([y0_outs, y0_pred])
-            y1_outs = torch.cat([y1_outs, y1_pred])
-            y_trgs = torch.cat([y_trgs, y])
-            t_trgs = torch.cat([t_trgs, t])
+            y0_outs, y1_outs = torch.cat([y0_outs, y0_pred]), torch.cat([y1_outs, y1_pred])
+            y_trgs, t_trgs = torch.cat([y_trgs, y]), torch.cat([t_trgs, t])
             te_trgs = torch.cat([te_trgs, te])
             
             with torch.no_grad():
                 self.model.eval()
                 self.model.update_centers(x)
-
 
         for met in self.metric_ftns:
             self.metrics.update(met.__name__, met(t_trgs, y_trgs, te_trgs, y0_outs, y1_outs))
@@ -97,11 +94,9 @@ class Trainer(BaseTrainer):
         
         if self.do_validation:
             val_log = self._infer(self.valid_set, self.valid_n_batches)
-            log.update(**{'val_' + k: v for k, v in val_log.items()})
-            
+            log.update(**{'val_' + k: v for k, v in val_log.items()})      
         return log
 
-        
     def _infer(self, data_set, n_batches):
         self.model.eval()
         self.metrics.reset()
@@ -109,29 +104,29 @@ class Trainer(BaseTrainer):
             y0_outs, y1_outs, t_outs = torch.tensor([]).to(self.device), torch.tensor([]).to(self.device), torch.tensor([]).to(self.device)
             y_trgs, t_trgs, te_trgs = torch.tensor([]).to(self.device), torch.tensor([]).to(dtype=torch.int64).to(self.device), torch.tensor([]).to(self.device)
             assigned_clusters = torch.tensor([]).to(self.device)
-            for index in range(n_batches):
-                x = data_set['X'][index*self.batch_size:(index+1)*self.batch_size]
-                x = torch.from_numpy(x).float().to(self.device)
+            for idx in range(n_batches):
+                x = torch.FloatTensor(
+                        data_set['X'][idx*self.batch_size:(idx+1)*self.batch_size]                    
+                    ).to(self.device)   
                 t = torch.Tensor(
-                        data_set['T'][index*self.batch_size:(index+1)*self.batch_size]                    
+                        data_set['T'][idx*self.batch_size:(idx+1)*self.batch_size]                    
                     ).to(self.device)            
                 y = torch.Tensor(
-                        data_set['Y'][index*self.batch_size:(index+1)*self.batch_size]                    
+                        data_set['Y'][idx*self.batch_size:(idx+1)*self.batch_size]                    
                     ).to(self.device)
                 te = torch.Tensor(
-                        data_set['TE'][index*self.batch_size:(index+1)*self.batch_size]                    
+                        data_set['TE'][idx*self.batch_size:(idx+1)*self.batch_size]                    
                     ).to(self.device)
                 
                 loss, y0_pred, y1_pred, t_pred, clusters = self.model.predict(x, t, y)
                 self.metrics.update('loss', loss.item())
                 
                 clusters = torch.argmax(clusters, dim=1)
-                y0_outs = torch.cat([y0_outs, y0_pred])
-                y1_outs = torch.cat([y1_outs, y1_pred])
-                y_trgs = torch.cat([y_trgs, y])
-                t_trgs = torch.cat([t_trgs, t])
-                te_trgs = torch.cat([te_trgs, te])
                 assigned_clusters = torch.cat([assigned_clusters, clusters])
+                y0_outs, y1_outs = torch.cat([y0_outs, y0_pred]), torch.cat([y1_outs, y1_pred])
+                y_trgs, t_trgs = torch.cat([y_trgs, y]), torch.cat([t_trgs, t])
+                te_trgs = torch.cat([te_trgs, te])
+                
                 
         for met in self.metric_ftns:
             self.metrics.update(met.__name__, met(t_trgs, y_trgs, te_trgs, y0_outs, y1_outs))
@@ -169,7 +164,6 @@ class Trainer(BaseTrainer):
             self.logger.info('    {:20s}: {}'.format(str(key), value))  
         self.logger.info('='*100)
 
-            
         return log
         
     def _progress(self, batch_idx):
