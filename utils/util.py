@@ -4,8 +4,6 @@ from collections import OrderedDict
 from itertools import repeat
 import pandas as pd
 
-
-
 def ensure_dir(dirname):
     dirname = Path(dirname)
     if not dirname.is_dir():
