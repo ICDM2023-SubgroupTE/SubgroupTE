@@ -34,7 +34,7 @@ The downloadable versions of both synthetic and semi-synthetic datasets used in 
 A simulation of the data is included in "train.py".
 
 ### OUD dataset
-Please be informed that the dataset utilized in this study is derived from MarketScan claims data. To obtain access to the data, interested parties are advised to contact IBM through the following link: [Insert link for data access].
+Please be informed that the dataset utilized in this study is derived from MarketScan claims data. To obtain access to the data, interested parties are advised to contact IBM through the following link: [Insert link for data access](https://www.ibm.com/watson-health/merative-divestiture).
 
 ## Training and test
 ### Python command
