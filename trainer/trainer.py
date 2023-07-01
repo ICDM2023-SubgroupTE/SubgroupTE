@@ -2,9 +2,6 @@ import numpy as np
 import torch
 from trainer.base_trainer import BaseTrainer
 from utils import inf_loop, MetricTracker
-from model.utils.utils import padding
-import torch.nn as nn
-import pandas as pd
 from model.metric import compute_variances
 
 class Trainer(BaseTrainer):
