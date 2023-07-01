@@ -14,13 +14,12 @@ Figure 1: Architecture of SubgroupTE. The feature representation network transfo
 
 
 ## Installation
-Our model depends on Numpy, scikit-learn, and PyTorch (CUDA toolkit if use GPU). You must have them installed before using our model
+Our model depends on Numpy, and PyTorch (CUDA toolkit if use GPU). You must have them installed before using our model
 >
 * Python 3.9
 * Pytorch 1.10.2
 * Numpy 1.21.2
 * Pandas 1.4.1
-* Scikit-learn 1.0.2
 
 This command will install all the required libraries and their specified versions.
 ```python 
@@ -30,7 +29,7 @@ pip install -r requirements.txt
 ## Data preparation
 ### Synthetic datasets
 The downloadable versions of both synthetic and semi-synthetic datasets used in the paper can be accesse in the "data" folder. 
-A simulation of the data is included in "train.py".
+A simulation of the dataset is included in 'train.py'.
 
 ### OUD dataset
 Please be informed that the dataset utilized in this study is derived from MarketScan claims data. To obtain access to the data, interested parties are advised to contact IBM through the [link](https://www.ibm.com/watson-health/merative-divestiture).
