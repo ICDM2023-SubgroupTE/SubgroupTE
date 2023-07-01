@@ -17,11 +17,10 @@ class Trainer(BaseTrainer):
                       test_set):
         super().__init__(model, metric_ftns, optimizer, config)
         self.config = config
-        self.batch_size = config["data_loader"]["batch_size"]
+        self.batch_size = config['data_loader']['batch_size']
         self.d_type = self.config['data_loader']['data']
         self.n_clusters = self.model.n_clusters
         self.input_dim = self.model.input_dim
-        self.target_drug = config['data_loader']['target_drug']
         
         self.train_set = train_set
         self.valid_set = valid_set
@@ -37,9 +36,7 @@ class Trainer(BaseTrainer):
 
         self.metrics = MetricTracker('loss', *[m.__name__ for m in self.metric_ftns])
 
-    def _train_epoch(self, epoch):
-        x_lengths = None                       
-        
+    def _train_epoch(self, epoch):        
         self.metrics.reset()                
         y0_outs, y1_outs, t_outs = torch.tensor([]).to(self.device), torch.tensor([]).to(self.device), torch.tensor([]).to(self.device)
         y_trgs, t_trgs, te_trgs = torch.tensor([]).to(self.device), torch.tensor([]).to(dtype=torch.int64).to(self.device), torch.tensor([]).to(self.device)
@@ -99,17 +96,16 @@ class Trainer(BaseTrainer):
         log.update({'across_var':across_var})  
         
         if self.do_validation:
-            val_log = self._infer(self.valid_set, self.valid_n_batches, is_valid=True, epoch=epoch)
+            val_log = self._infer(self.valid_set, self.valid_n_batches)
             log.update(**{'val_' + k: v for k, v in val_log.items()})
             
         return log
 
         
-    def _infer(self, data_set, n_batches, is_valid=False, is_test=False, epoch=None):
+    def _infer(self, data_set, n_batches):
         self.model.eval()
         self.metrics.reset()
         with torch.no_grad():
-            x_lengths = None
             y0_outs, y1_outs, t_outs = torch.tensor([]).to(self.device), torch.tensor([]).to(self.device), torch.tensor([]).to(self.device)
             y_trgs, t_trgs, te_trgs = torch.tensor([]).to(self.device), torch.tensor([]).to(dtype=torch.int64).to(self.device), torch.tensor([]).to(self.device)
             assigned_clusters = torch.tensor([]).to(self.device)
@@ -161,7 +157,7 @@ class Trainer(BaseTrainer):
         log = {}        
         train_log = self._infer(self.train_set, self.train_n_batches)
         valid_log = self._infer(self.valid_set, self.valid_n_batches)
-        test_log = self._infer(self.test_set, self.test_n_batches, is_test=True)
+        test_log = self._infer(self.test_set, self.test_n_batches)
         log.update(**{'train_' + k: v for k, v in train_log.items()})
         log.update(**{'val_' + k: v for k, v in valid_log.items()})
         log.update(**{'test_' + k: v for k, v in test_log.items()})
