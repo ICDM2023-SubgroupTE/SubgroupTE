@@ -30,8 +30,7 @@ pip install -r requirements.txt
 
 ## Data preparation
 ### Synthetic datasets
-The downloadable versions of both synthetic datasets used in the paper
-can be accesse in the "data" folder. 
+The downloadable versions of both synthetic and semi-synthetic datasets used in the paper can be accesse in the "data" folder. 
 A simulation of the data is included in "train.py".
 
 ## Training and test
