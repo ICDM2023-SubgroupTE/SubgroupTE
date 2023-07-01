@@ -9,36 +9,23 @@ np.random.seed(SEED)
     
 def Load_split_dataset(config):
     params = config["data_loader"]
-    if params['data'] == 'OUD':
-        data = load_OUD(config)
-        n_samples = len(data)
+    if params['data'] == 'IHDP':
+        data = create_IHDP()
     else:
-        if params['data'] == 'IHDP':
-            data = create_IHDP()
-        else:
-            data = create_synth(params["n_samples"])
-        n_samples, n_feat = data[0].shape 
-        config["hyper_params"]["input_dim"] = n_feat
+        data = create_synth(params["n_samples"])
+    n_samples, n_feat = data[0].shape 
+    config["hyper_params"]["input_dim"] = n_feat
         
-    n_train = int(n_samples*params["train_ratio"])
-    n_test = int(n_samples*params["test_ratio"])
+    n_train, n_test = int(n_samples*params["train_ratio"]), int(n_samples*params["test_ratio"])
 
     index = np.random.RandomState(seed=SEED).permutation(n_samples)
     train_index = index[:n_train]
     test_index = index[n_train:n_train+n_test]
     valid_index = index[n_train+n_test:]
-    
-    if params['data'] == 'OUD':        
-        convert_numeric = Convert_to_numeric()
-        train_set, convert_numeric = OUD_dataset(data, train_index, convert_numeric, is_train=True)
-        valid_set, _ = OUD_dataset(data, valid_index, convert_numeric)
-        test_set, _ = OUD_dataset(data, test_index, convert_numeric)
-        config["hyper_params"]["input_dim"] = convert_numeric.feat_idx
 
-    else:
-        train_set = synth_dataset(data, train_index)
-        valid_set = synth_dataset(data, valid_index)
-        test_set = synth_dataset(data, test_index)
+    train_set = synth_dataset(data, train_index)
+    valid_set = synth_dataset(data, valid_index)
+    test_set = synth_dataset(data, test_index)
     
     config["data_loader"]["n_samples"] = n_samples
     config["data_loader"]["n_train"] = len(train_index)
@@ -58,82 +45,6 @@ def synth_dataset(data, index):
     }
     return dataset
 
-
-def OUD_dataset(data, index, convert_numeric, is_train=False):
-    data = data.loc[index,]
-    X = convert_numeric.forward(data['X'], is_train=is_train)
-    
-    dataset = {
-        'X': X,
-        'T': np.array(data['T']).reshape(-1,1),
-        'Y': np.array(data['Y']).reshape(-1,1),
-        'Age': np.array(data['Age']).reshape(-1,1),
-        'Gender': np.array(data['Gender']).reshape(-1,1)
-    }
-     
-    return dataset, convert_numeric
-
-
-
-#######################################################################################################################
-# OUD data
-#######################################################################################################################
-def load_OUD(config):
-    drug_names = ['input_1103640.pkl','input_1133201.pkl','input_1714319.pkl']
-    dataset = pd.DataFrame()
-    for drug in drug_names:
-        path = os.path.join(config['path'], drug)
-        data = pd.DataFrame(pickle.load(open(path, 'rb')), columns=['patient','features','Y'])
-        if config['data_loader']['target_drug'] in drug:
-            data['T'] = 1
-        else:
-            data['T'] = 0
-        dataset = pd.concat([dataset, data])
-    
-    dataset = dataset.sample(frac=1, random_state=SEED).reset_index(drop=True).to_dict('series')
-    
-    n_samples = len(dataset['patient'])
-    dataset['X'] = [pd.NA for _ in range(n_samples)]
-    dataset['Age'] = [pd.NA for _ in range(n_samples)]
-    dataset['Gender'] = [pd.NA for _ in range(n_samples)]
-    dataset['n_visit'] = [pd.NA for _ in range(n_samples)]
-    for idx in range(n_samples):
-        dataset['X'][idx] = dataset['features'][idx][1]
-        dataset['Age'][idx] = dataset['features'][idx][2]
-        dataset['Gender'][idx] = dataset['features'][idx][3]
-        dataset['n_visit'][idx] = len(dataset['X'][idx])
-        
-    dataset = pd.DataFrame(dataset)    
-    dataset = dataset[dataset.n_visit<=200].reset_index(drop=True)
-    
-    return dataset
-    
-    
-class Convert_to_numeric:
-    def __init__(self,):
-        super(Convert_to_numeric, self).__init__()
-        self.feat_idx = 0
-        self.feat_dict = {}
-    
-    def transform(self, seqs, is_train):
-        code_list = list()
-        for sub_seq in seqs:
-            sub_list=list()
-            for code in sub_seq:
-                if is_train and code not in self.feat_dict.keys():
-                    self.feat_dict[code] = self.feat_idx
-                    self.feat_idx += 1
-                if code in self.feat_dict.keys():
-                    sub_list.append(self.feat_dict[code])
-            code_list.append(sub_list)
-        return code_list
-
-    def forward(self, input, is_train=False):
-        n_samples = len(input)
-        X = [pd.NA for _ in range(n_samples)]
-        for idx in range(n_samples):
-            X[idx] = self.transform(input.iloc[idx], is_train)
-        return X
 
 #######################################################################################################################
 # Synthetic data
