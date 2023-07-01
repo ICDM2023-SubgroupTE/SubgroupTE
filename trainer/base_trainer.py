@@ -60,8 +60,6 @@ class BaseTrainer:
         Full training logic
         """
         not_improved_count = 0
-
-
         for epoch in range(self.start_epoch, self.epochs + 1):
             result = self._train_epoch(epoch)
 
