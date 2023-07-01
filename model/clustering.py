@@ -11,13 +11,13 @@ class ClusterAssignment(nn.Module):
     def __init__(
         self,
         n_clusters,
-        w,
-        init = 'kmeans++'
+        init = 'kmeans++',
+        w = 1
     ):
         super(ClusterAssignment, self).__init__()
         self.n_clusters = n_clusters
-        self.w = w
         self.init = init
+        self.w = w
         self.cluster_centers = None
         self.eps = 1e-5
             
