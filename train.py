@@ -13,6 +13,7 @@ torch.backends.cudnn.deterministic = False
 torch.backends.cudnn.benchmark = False
 
 def main(config):
+    # load datasets
     config, train_set, valid_set, test_set = Load_split_dataset(config)
         
     # build model architecture, initialize weights, then print to console    
@@ -41,9 +42,8 @@ def main(config):
     log = trainer.train()
     return log
 
-
 if __name__ == '__main__':
-    args = argparse.ArgumentParser(description='PyTorch Template')
+    args = argparse.ArgumentParser()
     args.add_argument('-c', '--config', type=str, 
                       help='config file path (default: None)')
     args.add_argument('-r', '--resume', default=None, type=str,
