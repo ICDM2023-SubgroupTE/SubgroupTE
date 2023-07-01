@@ -58,10 +58,11 @@ Hyper-parameters are set in config/*.json
 * `n_clusters`: the number of subgroups to identify.
 * `emb_dim`: the hidden dimension of the feature representation network.
 * `out_dim`: the hidden dimension of the subgroup-informed prediction network.
-* `alpha, gamma, and beta`: weights to control losses.
+* `n_layers`: the number of layers in TransformerEncoder
 * `init`: method for initializing cluster centroids from {'kmeans++', 'random'}
+* `alpha, gamma, and beta`: weights to control losses.
+* `metrics`: metrics to print out. It is a list format. Functions for all metrics should be included in 'model/metric.py'.
 * `early_stop`: the number of epochs for early stopping
 * `monitor`: the criterion for early stopping. The first word is 'min' or 'max', the second one is metric
-* `metrics`: metrics to print out. It is a list format. Functions for all metrics should be included in 'model/metric.py'.
 
 
