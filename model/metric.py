@@ -1,6 +1,5 @@
 import numpy as np
 import torch
-import torch.nn.functional as F
 
 def PEHE(t, y, TE, y0_pred, y1_pred):
     TE_pred = (y1_pred - y0_pred)  
