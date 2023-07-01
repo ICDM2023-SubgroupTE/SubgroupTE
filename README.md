@@ -1,1 +1,61 @@
+# SubgroupTE: Advancing Treatment Effect Estimation with Subgroup Identification
+
+## Introduction
+This repository contains source code for paper "SubgroupTE: Advancing Treatment Effect Estimation with Subgroup Identification".
+
+Precise estimation of treatment effects is crucial for evaluating intervention effectiveness. While deep learning models have shown promising performance in treatment effect estimation (TEE), most of them ignore the heterogeneity in treatment effects across subgroups with diverse characteristics, thereby limiting their ability to provide accurate estimation and treatment recommendations for certain groups. In this paper, we propose a new neural network-based framework named SubgroupTE that incorporates subgroup identification and treatment effect estimation. SubgroupTE simultaneously identifies heterogeneous subgroups and estimates treatment effects by subgroup, providing a comprehensive approach to more precisely estimate treatment effects by considering the heterogeneity of responses in the estimation process. In addition, SubgroupTE iteratively optimizes subgrouping and treatment effect estimation, resulting in more accurate subgroup identification and treatment effect estimation. Comprehensive experiments on the synthetic and semi-synthetic datasets exhibit the outstanding performance of SubgroupTE compared with the state-of-the-art models on treatment effect estimation. Additionally, experiments conducted on a real-world opioid use disorder (OUD) dataset demonstrate the potential of our approach to enhance personalized treatment recommendations for OUD patients by not only estimating treatment effects but also identifying heterogeneous subgroups based on patients' medical history. 
+
+## Overview
+
+![figure1](https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/a5723196-306c-4a93-b02d-c842fae935d1)
+
+
+Figure 1: Architecture of SubgroupTE. The feature representation network transforms the input data into latent feature representations. The subgrouping network pre-estimates the treatment effect and assigns subgroup probabilities. The subgroup-informed prediction network combines the subgroup probability vector and the latent features to estimate treatment effects.
+
+
+## Installation
+Our model depends on Numpy, scikit-learn, and PyTorch (CUDA toolkit if use GPU). You must have them installed before using our model
+>
+* Python 3.9
+* Pytorch 1.10.2
+* torchmetrics 0.7.2
+* Numpy 1.21.2
+* Pandas 1.4.1
+* Scikit-learn 1.0.2
+
+This command will install all the required libraries and their specified versions.
+```python 
+pip install -r requirements.txt
+```
+
+## Data preparation
+### Synthetic datasets
+The downloadable versions of both synthetic datasets used in the paper
+can be accesse in the "data" folder. 
+A simulation of the data is included in "train.py".
+
+## Training and test
+### Python command
+For training and evaluating the model, run the following code
+The code simulates the synthetic/semi-sythetic datasets.
+```python 
+# Note: hyper-parameters are included in config/*.json
+python train.py --config 'config/SubgroupTE.json' --data 'IHDP'
+```
+
+### Parameters
+Hyper-parameters are set in config/*.json
+>
+* `n_samples`: the number of simulated samples (for the synthetic dataset only)
+* `train_ratio`: the ratio of training set
+* 'test_ratio`: the ratio of test set
+* `n_clusters`: the number of subgroups to identify.
+* `emb_dim`: the hidden dimension of the feature representation network.
+* `out_dim`: the hidden dimension of the subgroup-informed prediction network.
+* `alpha, gamma, and beta`: weights to control losses.
+* `init`: method for initializing cluster centroids from {'kmeans++', 'random'}
+* `early_stop`: the number of epochs for early stopping
+* `monitor`: the criterion for early stopping. The first word is 'min' or 'max', the second one is metric
+* `metrics`: metrics to print out. It is a list format. Functions for all metrics should be included in 'model/metrics.py'.
+
 
