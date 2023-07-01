@@ -64,6 +64,6 @@ Hyper-parameters are set in config/*.json
 * `init`: method for initializing cluster centroids from {'kmeans++', 'random'}
 * `early_stop`: the number of epochs for early stopping
 * `monitor`: the criterion for early stopping. The first word is 'min' or 'max', the second one is metric
-* `metrics`: metrics to print out. It is a list format. Functions for all metrics should be included in 'model/metrics.py'.
+* `metrics`: metrics to print out. It is a list format. Functions for all metrics should be included in 'model/metric.py'.
 
 
