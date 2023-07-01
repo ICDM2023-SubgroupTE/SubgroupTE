@@ -1,17 +1,18 @@
 {
-    "path": "saved_cohort/overdose_ORADEs_hosp", 
-    "arch": {
-    },
     "n_gpu": 1,
     "data_loader": {
         "batch_size": 64,
         "n_samples": 1000,
         "train_ratio": 0.6,
         "test_ratio": 0.2,
-        "target_drug": "1714319",
-        "threshold": 1
     },
     "hyper_params": {
+        "n_clusters": 5,
+        "emb_dim": 50,
+        "out_dim": 50,
+        "alpha": 1,
+        "gamma": 1,
+        "beta": 1,
     },
     "optimizer": {
         "type": "SGD",
@@ -27,7 +28,6 @@
     "trainer": {
         "epochs": 2000,
         "save_dir": "saved/",
-        "save_period": 30,
         "verbosity": 2,
         "monitor": "min val_loss",
         "early_stop": 20
