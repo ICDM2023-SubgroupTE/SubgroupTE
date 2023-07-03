@@ -29,6 +29,7 @@ pip install -r requirements.txt
 ## Data preparation
 ### Synthetic datasets
 The downloadable versions of both synthetic and semi-synthetic datasets used in the paper can be accesse in the 'data' folder. 
+
 Note: The simulation for the synthetic datasets is already integrated within 'train.py' file.
 
 ### OUD dataset
