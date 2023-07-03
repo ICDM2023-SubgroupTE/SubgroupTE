@@ -38,12 +38,11 @@ Please be informed that the OUD dataset utilized in this study is derived from M
 ## Training and test
 ### Python command
 For training and evaluating the model, run the following code
-The code simulates the synthetic/semi-sythetic datasets.
 ```python 
-# Note: hyper-parameters are included in config/*.json
+# Note 1: hyper-parameters are included in config/*.json
+# Note 2: the code simulates the synthetic/semi-sythetic datasets.
 python train.py --config 'config/SubgroupTE.json' --data 'IHDP'
 ```
-
   
 ### Parameters
 Hyper-parameters are set in train.py
