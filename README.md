@@ -47,7 +47,7 @@ python train.py --config 'config/SubgroupTE.json' --data 'IHDP'
 ### Parameters
 Hyper-parameters are set in train.py
 >
-* `data`: dataset from {'synthetic', 'IHDP'}.
+* `data`: dataset to use; {'synthetic', 'IHDP'}.
 * `config`: json file
 
 Hyper-parameters are set in config/*.json
@@ -59,7 +59,7 @@ Hyper-parameters are set in config/*.json
 * `emb_dim`: the hidden dimension of the feature representation network.
 * `out_dim`: the hidden dimension of the subgroup-informed prediction network.
 * `n_layers`: the number of layers in TransformerEncoder
-* `init`: method for initializing cluster centroids from {'kmeans++', 'random'}
+* `init`: method for initializing cluster centroids; {'kmeans++', 'random'}
 * `alpha, gamma, and beta`: weights to control losses.
 * `metrics`: metrics to print out. It is a list format. Functions for all metrics should be included in 'model/metric.py'.
 * `early_stop`: the number of epochs for early stopping
