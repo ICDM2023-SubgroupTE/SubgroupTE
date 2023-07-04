@@ -86,6 +86,7 @@ deviation under 30 trials are reported.
 ### Subgroup identification
 Figure 2. Visualization of boxplots of the treatment effect distribution for the identified subgroups on the test set. Each box represents the interquartile range, spanning from the 25th to the 75th percentiles of the treatment effect. The whiskers represent the range between the 5th and 95th percentiles
 ![image](https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3f008dc7-e872-4f03-b872-5a0dfaa11499){width=300 height=200}
+<img width="400" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3f008dc7-e872-4f03-b872-5a0dfaa11499">
 
 
 Figure 3. Illustration of the trends in PEHE and variance within and across subgroups during the training phase on the valida-
