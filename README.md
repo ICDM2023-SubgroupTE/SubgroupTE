@@ -30,16 +30,14 @@ pip install -r requirements.txt
 ### Synthetic datasets
 The downloadable version of the synthetic dataset used in the paper can be accesse in the 'data' folder. 
 
-_Note: The simulation for the synthetic dataset is already integrated within 'train.py' file._
-
-
-The dictionary structure of the synthetic data. 
-
-synthetic_data  
+The structure of the synthetic data. 
+data (dict) 
     |-- 'X': [...]   
     |-- 'T': [...]  
     |-- 'Y': [...]  
     |-- 'TE': [...]  
+
+_Note: The simulation for the synthetic dataset is already integrated within 'train.py' file._
 
 
 ### OUD dataset
