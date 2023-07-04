@@ -77,8 +77,26 @@ Hyper-parameters are set in config/*.json
 
 ## Results
 ### Treatment effect estimation
-Comparison of prediction performance on the synthetic and semi-synthetic datasets. The average score and standard
+
+Table 1. Comparison of prediction performance on the synthetic and semi-synthetic datasets. The average score and standard
 deviation under 30 trials are reported.
 
-<img width="679" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3777ffa3-ce22-4832-9403-3d183ad5881c">
+<img width="504" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/03eb0488-8509-4219-a55f-4837730bd1ee">
+
+### Subgroup identification
+Figure 2. Visualization of boxplots of the treatment effect distribution for the identified subgroups on the test set. Each box represents the interquartile range, spanning from the 25th to the 75th percentiles of the treatment effect. The whiskers represent the range between the 5th and 95th percentiles
+![image](https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3f008dc7-e872-4f03-b872-5a0dfaa11499)
+
+
+Figure 3. Illustration of the trends in PEHE and variance within and across subgroups during the training phase on the valida-
+tion set of the synthetic dataset.
+![image](https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/7f6dc3af-90a2-4124-bd2c-82d1c2ff1f0f)
+
+### Sensitivity analysis 
+
+Figure 4. Sensitivity analysis conducted for (a) Coefficient and (b) Number of subgroups on the semi-synthetic dataset. For
+(a), the performance of each coefficient is evaluated while fixing the remaining two coefficients at 1.
+![image](https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/39c52f35-83fd-4b61-9522-9745e415c0e8)
+
+### Complexity analaysis
 
