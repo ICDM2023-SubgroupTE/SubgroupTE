@@ -28,9 +28,9 @@ pip install -r requirements.txt
 
 ## Data preparation
 ### Synthetic datasets
-The downloadable versions of both synthetic and semi-synthetic datasets used in the paper can be accesse in the 'data' folder. 
+The downloadable version of the synthetic dataset used in the paper can be accesse in the 'data' folder. 
 
-_Note: The simulation for the synthetic datasets is already integrated within 'train.py' file._
+_Note: The simulation for the synthetic dataset is already integrated within 'train.py' file._
 
 ### OUD dataset
 Please be informed that the OUD dataset utilized in this study is derived from MarketScan claims data. To obtain access to the data, interested parties are advised to contact IBM through [link](https://www.ibm.com/watson-health/merative-divestiture).
@@ -41,13 +41,13 @@ For training and evaluating the model, run the following code
 ```python 
 # Note 1: hyper-parameters are included in config/*.json.
 # Note 2: the code simulates the data.
-python train.py --config 'config/SubgroupTE.json' --data 'IHDP'
+python train.py --config 'config/SubgroupTE.json' --data 'Synthetic'
 ```
   
 ### Parameters
 Hyper-parameters are set in train.py
 >
-* `data`: dataset to use; {'synthetic', 'IHDP'}.
+* `data`: dataset to use; {'Synthetic', 'IHDP'}.
 * `config`: json file
 
 Hyper-parameters are set in config/*.json
