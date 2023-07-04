@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ### Synthetic datasets
 The downloadable version of the synthetic dataset used in the paper can be accesse in the 'data' folder. 
 
-The structure of the synthetic data. 
+The structure of the synthetic data:
 ```
 synthetic (dict)     
     |-- 'X': [...]   
