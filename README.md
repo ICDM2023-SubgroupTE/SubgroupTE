@@ -81,7 +81,7 @@ Hyper-parameters are set in config/*.json
 Table 1. Comparison of prediction performance on the synthetic and semi-synthetic datasets. The average score and standard
 deviation under 30 trials are reported.
 
-<img width="250" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/03eb0488-8509-4219-a55f-4837730bd1ee">
+<img width="400" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/03eb0488-8509-4219-a55f-4837730bd1ee">
 
 ### Subgroup identification
 Figure 2. Visualization of boxplots of the treatment effect distribution for the identified subgroups on the test set. Each box represents the interquartile range, spanning from the 25th to the 75th percentiles of the treatment effect. The whiskers represent the range between the 5th and 95th percentiles
@@ -90,7 +90,7 @@ Figure 2. Visualization of boxplots of the treatment effect distribution for the
 
 Figure 3. Illustration of the trends in PEHE and variance within and across subgroups during the training phase on the valida-
 tion set of the synthetic dataset.
-![image](https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/7f6dc3af-90a2-4124-bd2c-82d1c2ff1f0f){width=300 height=200}
+![image](https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/7f6dc3af-90a2-4124-bd2c-82d1c2ff1f0f){width=150 height=150}
 
 ### Sensitivity analysis 
 
