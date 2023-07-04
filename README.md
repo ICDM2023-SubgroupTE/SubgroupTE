@@ -80,5 +80,5 @@ Hyper-parameters are set in config/*.json
 Comparison of prediction performance on the synthetic and semi-synthetic datasets. The average score and standard
 deviation under 30 trials are reported.
 
-![table](<img width="656" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/ff55400b-3f76-4c64-9da1-469e4be72487">
-)
+<img width="679" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3777ffa3-ce22-4832-9403-3d183ad5881c">
+
