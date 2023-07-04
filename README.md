@@ -75,3 +75,10 @@ Hyper-parameters are set in config/*.json
 * `monitor`: the criterion for early stopping. The first word is 'min' or 'max', the second one is metric
 
 
+## Results
+### Treatment effect estimation
+Comparison of prediction performance on the synthetic and semi-synthetic datasets. The average score and standard
+deviation under 30 trials are reported.
+
+![table](<img width="656" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/ff55400b-3f76-4c64-9da1-469e4be72487">
+)
