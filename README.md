@@ -35,10 +35,10 @@ _Note: The simulation for the synthetic dataset is already integrated within 'tr
 
 The dictionary structure of the synthetic data. 
 
-It consists of keys such as 'X', 'T', 'Y', and 'TE', and their corresponding values are represented as lists. 
+It consists of keys such as 'X', 'T', 'Y', and 'TE', and their corresponding values are represented as lists. 
 
 Data  
-|-- 'X': [...]   
+|-- 'X': [...]   
 |-- 'T': [...]  
 |-- 'Y': [...]  
 |-- 'TE': [...]  
