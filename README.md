@@ -31,13 +31,13 @@ pip install -r requirements.txt
 The downloadable version of the synthetic dataset used in the paper can be accesse in the 'data' folder. 
 
 The structure of the synthetic data. 
-
+```
 synthetic (dict)     
     |-- 'X': [...]   
     |-- 'T': [...]  
     |-- 'Y': [...]  
     |-- 'TE': [...]  
-
+```
 _Note: The simulation for the synthetic dataset is already integrated within 'train.py' file._
 
 
