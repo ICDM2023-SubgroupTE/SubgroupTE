@@ -32,6 +32,17 @@ The downloadable version of the synthetic dataset used in the paper can be acces
 
 _Note: The simulation for the synthetic dataset is already integrated within 'train.py' file._
 
+
+The diagram illustrates the dictionary structure of the synthetic data. It consists of keys such as 'X', 'T', 'Y', and 'TE', and their corresponding values are represented as lists. 
+
+Data
+|-- 'X': [...]
+|-- 'T': [...]
+|-- 'Y': [...]
+|-- 'TE': [...]
+...
+
+
 ### OUD dataset
 Please be informed that the OUD dataset utilized in this study is derived from MarketScan claims data. To obtain access to the data, interested parties are advised to contact IBM through [link](https://www.ibm.com/watson-health/merative-divestiture).
 
