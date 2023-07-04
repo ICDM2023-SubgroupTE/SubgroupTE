@@ -83,7 +83,7 @@ Table 1. Comparison of prediction performance on the synthetic and semi-syntheti
 
 ### Subgroup identification
 <p align="center">
-<img width="500" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3f008dc7-e872-4f03-b872-5a0dfaa11499" style="display: inline-block;">
+<img width="450" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3f008dc7-e872-4f03-b872-5a0dfaa11499" style="display: inline-block;">
 </p>
     
 Figure 2. Visualization of boxplots of the treatment effect distribution for the identified subgroups on the test set. Each box represents the interquartile range, spanning from the 25th to the 75th percentiles of the treatment effect. The whiskers represent the range between the 5th and 95th percentiles.
