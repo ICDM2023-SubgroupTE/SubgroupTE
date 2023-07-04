@@ -33,13 +33,15 @@ The downloadable version of the synthetic dataset used in the paper can be acces
 _Note: The simulation for the synthetic dataset is already integrated within 'train.py' file._
 
 
-The diagram illustrates the dictionary structure of the synthetic data. It consists of keys such as 'X', 'T', 'Y', and 'TE', and their corresponding values are represented as lists. 
+The dictionary structure of the synthetic data. 
 
-Data
-|-- 'X': [...]
-|-- 'T': [...]
-|-- 'Y': [...]
-|-- 'TE': [...]
+It consists of keys such as 'X', 'T', 'Y', and 'TE', and their corresponding values are represented as lists. 
+
+Data  
+|-- 'X': [...]   
+|-- 'T': [...]  
+|-- 'Y': [...]  
+|-- 'TE': [...]  
 ...
 
 
