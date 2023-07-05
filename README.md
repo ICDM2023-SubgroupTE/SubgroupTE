@@ -99,3 +99,13 @@ Figure 3. Sensitivity analysis conducted for (a) Coefficient and (b) Number of s
 
 ### Complexity analaysis
 
+The complexity analysis involves determining the training time and the number of parameters for each model with their respective optimal hyperparameters on the synthetic dataset. 
+
+Early stopping is applied to all models, where training stops if the loss on validation data does not decrease for 20 epochs. The number of epochs represents training epochs.
+
+<img width="591" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/8ac271c8-3b97-42fd-bde1-0bb8593064a2">
+
+
+
+
+
