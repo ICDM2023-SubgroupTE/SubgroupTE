@@ -74,14 +74,14 @@ Hyper-parameters are set in config/*.json
 
 
 ## Results
-### Treatment effect estimation
+#### Treatment effect estimation
 
 Table 1. Comparison of prediction performance on the synthetic and semi-synthetic datasets. The average score and standard deviation under 30 trials are reported.
 <p align="center">
 <img width="600" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/03eb0488-8509-4219-a55f-4837730bd1ee" style="display: inline-block;">
 </p>
 
-### Subgroup identification
+#### Subgroup identification
 <p align="center">
 <img width="450" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/3f008dc7-e872-4f03-b872-5a0dfaa11499" style="display: inline-block;">
 </p>
@@ -89,7 +89,7 @@ Table 1. Comparison of prediction performance on the synthetic and semi-syntheti
 Figure 2. Visualization of boxplots of the treatment effect distribution for the identified subgroups on the test set. Each box represents the interquartile range, spanning from the 25th to the 75th percentiles of the treatment effect. The whiskers represent the range between the 5th and 95th percentiles.
 
 
-### Sensitivity analysis 
+#### Sensitivity analysis 
 
 <p align="center">
 <img width="500" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/39c52f35-83fd-4b61-9522-9745e415c0e8" style="display: inline-block;">
@@ -97,7 +97,7 @@ Figure 2. Visualization of boxplots of the treatment effect distribution for the
 Figure 3. Sensitivity analysis conducted for (a) Coefficient and (b) Number of subgroups on the semi-synthetic dataset. For (a), the performance of each coefficient is evaluated while fixing the remaining two coefficients at 1.
 
 
-### Complexity analaysis
+#### Complexity analaysis
 
 The complexity analysis involves determining the training time and the number of parameters for each model with their respective optimal hyperparameters on the synthetic dataset. 
 
