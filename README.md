@@ -107,7 +107,7 @@ Early stopping is applied to all models, where training stops if the loss on val
 <img width="550" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/8ac271c8-3b97-42fd-bde1-0bb8593064a2">
 </p>
 
-_We conducted our experiments using a high-performance computing cluster consisting of 42 nodes, each equipped with dual Intel Xeon 8268 processors, 384GB RAM, and dual NVIDIA Volta V100 GPUs with 32GB memory._
+_Experiments were conducted using a computing cluster consisting of 42 nodes, each equipped with dual Intel Xeon 8268 processors, 384GB RAM, and dual NVIDIA Volta V100 GPUs with 32GB memory._
 
 
 
