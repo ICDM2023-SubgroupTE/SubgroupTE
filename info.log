@@ -1,0 +1,450 @@
+2023-07-05 19:28:35,511 - train - INFO - ====================================================================================================
+2023-07-05 19:28:35,511 - train - INFO -     Model                    : SubgroupTEE
+2023-07-05 19:28:35,511 - train - INFO - ----------------------------------------------------------------------------------------------------
+2023-07-05 19:28:35,511 - train - INFO -     batch_size               : 64
+2023-07-05 19:28:35,511 - train - INFO -     n_samples                : 1000
+2023-07-05 19:28:35,511 - train - INFO -     train_ratio              : 0.6
+2023-07-05 19:28:35,511 - train - INFO -     test_ratio               : 0.2
+2023-07-05 19:28:35,511 - train - INFO -     target_drug              : None
+2023-07-05 19:28:35,511 - train - INFO -     threshold                : 1
+2023-07-05 19:28:35,511 - train - INFO -     data                     : Synth
+2023-07-05 19:28:35,511 - train - INFO -     n_train                  : 600
+2023-07-05 19:28:35,511 - train - INFO -     n_valid                  : 200
+2023-07-05 19:28:35,511 - train - INFO -     n_test                   : 200
+2023-07-05 19:28:35,511 - train - INFO - ----------------------------------------------------------------------------------------------------
+2023-07-05 19:28:35,511 - train - INFO -     n_clusters               : 5
+2023-07-05 19:28:35,511 - train - INFO -     n_layers                 : 2
+2023-07-05 19:28:35,511 - train - INFO -     shared_hidden            : 200
+2023-07-05 19:28:35,511 - train - INFO -     outcome_hidden           : 200
+2023-07-05 19:28:35,511 - train - INFO -     alpha                    : 1.0
+2023-07-05 19:28:35,512 - train - INFO -     beta                     : 1.0
+2023-07-05 19:28:35,512 - train - INFO -     gamma                    : 1.0
+2023-07-05 19:28:35,512 - train - INFO -     input_dim                : 10
+2023-07-05 19:28:35,512 - train - INFO - ----------------------------------------------------------------------------------------------------
+2023-07-05 19:28:35,512 - train - INFO - SubgroupTEE(
+  (embedding): Sequential(
+    (0): Linear(in_features=10, out_features=10, bias=True)
+    (1): ReLU()
+  )
+  (encoder_layer): TransformerEncoderLayer(
+    (self_attn): MultiheadAttention(
+      (out_proj): NonDynamicallyQuantizableLinear(in_features=10, out_features=10, bias=True)
+    )
+    (linear1): Linear(in_features=10, out_features=200, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+    (linear2): Linear(in_features=200, out_features=10, bias=True)
+    (norm1): LayerNorm((10,), eps=1e-05, elementwise_affine=True)
+    (norm2): LayerNorm((10,), eps=1e-05, elementwise_affine=True)
+    (dropout1): Dropout(p=0.1, inplace=False)
+    (dropout2): Dropout(p=0.1, inplace=False)
+  )
+  (transformer_encoder): TransformerEncoder(
+    (layers): ModuleList(
+      (0-1): 2 x TransformerEncoderLayer(
+        (self_attn): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=10, out_features=10, bias=True)
+        )
+        (linear1): Linear(in_features=10, out_features=200, bias=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (linear2): Linear(in_features=200, out_features=10, bias=True)
+        (norm1): LayerNorm((10,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((10,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.1, inplace=False)
+        (dropout2): Dropout(p=0.1, inplace=False)
+      )
+    )
+  )
+  (init_treat_out): Linear(in_features=10, out_features=1, bias=True)
+  (init_control_out): Linear(in_features=10, out_features=1, bias=True)
+  (assignment): ClusterAssignment()
+  (control_out): Sequential(
+    (0): Linear(in_features=15, out_features=200, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=200, out_features=200, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=200, out_features=1, bias=True)
+  )
+  (treat_out): Sequential(
+    (0): Linear(in_features=15, out_features=200, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=200, out_features=200, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=200, out_features=1, bias=True)
+  )
+  (propensity): Sequential(
+    (0): Linear(in_features=15, out_features=1, bias=True)
+    (1): Sigmoid()
+  )
+)
+2023-07-05 19:28:35,512 - train - INFO - ----------------------------------------------------------------------------------------------------
+2023-07-05 19:28:35,513 - trainer - WARNING - Warning: There's no GPU available on this machine,training will be performed on CPU.
+2023-07-05 19:28:36,504 - trainer - INFO -     epoch          : 10
+2023-07-05 19:28:36,504 - trainer - INFO -     loss           : 261.4757499694824
+2023-07-05 19:28:36,504 - trainer - INFO -     PEHE           : 2.5738778114318848
+2023-07-05 19:28:36,505 - trainer - INFO -     ATE            : 0.027436017990112305
+2023-07-05 19:28:36,505 - trainer - INFO -     RMSE           : 1.4732204675674438
+2023-07-05 19:28:36,505 - trainer - INFO -     clusters       : [0.0, 1.0]
+2023-07-05 19:28:36,505 - trainer - INFO -     counts         : [357, 243]
+2023-07-05 19:28:36,505 - trainer - INFO -     within_var     : 2.568594455718994
+2023-07-05 19:28:36,505 - trainer - INFO -     across_var     : 0.002222460797383974
+2023-07-05 19:28:36,505 - trainer - INFO -     val_loss       : 279.05410957336426
+2023-07-05 19:28:36,505 - trainer - INFO -     val_PEHE       : 2.766911029815674
+2023-07-05 19:28:36,505 - trainer - INFO -     val_ATE        : 0.15785002708435059
+2023-07-05 19:28:36,505 - trainer - INFO -     val_RMSE       : 1.6668355464935303
+2023-07-05 19:28:36,505 - trainer - INFO -     val_clusters   : [0.0, 1.0]
+2023-07-05 19:28:36,505 - trainer - INFO -     val_counts     : [196, 4]
+2023-07-05 19:28:36,505 - trainer - INFO -     val_across_var : 1.0425352642234884
+2023-07-05 19:28:36,505 - trainer - INFO -     val_within_var : 1.4281852543354034
+2023-07-05 19:28:37,658 - trainer - INFO -     epoch          : 20
+2023-07-05 19:28:37,658 - trainer - INFO -     loss           : 105.7107593536377
+2023-07-05 19:28:37,658 - trainer - INFO -     PEHE           : 1.0228171348571777
+2023-07-05 19:28:37,658 - trainer - INFO -     ATE            : 0.10503458976745605
+2023-07-05 19:28:37,658 - trainer - INFO -     RMSE           : 0.9243118762969971
+2023-07-05 19:28:37,658 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:37,658 - trainer - INFO -     counts         : [93, 171, 152, 88, 96]
+2023-07-05 19:28:37,658 - trainer - INFO -     within_var     : 1.054109561443329
+2023-07-05 19:28:37,658 - trainer - INFO -     across_var     : 1.390633941199544
+2023-07-05 19:28:37,658 - trainer - INFO -     val_loss       : 38.975998640060425
+2023-07-05 19:28:37,658 - trainer - INFO -     val_PEHE       : 0.42027565836906433
+2023-07-05 19:28:37,658 - trainer - INFO -     val_ATE        : 0.028181791305541992
+2023-07-05 19:28:37,658 - trainer - INFO -     val_RMSE       : 0.6340218186378479
+2023-07-05 19:28:37,658 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:37,658 - trainer - INFO -     val_counts     : [18, 59, 68, 30, 25]
+2023-07-05 19:28:37,658 - trainer - INFO -     val_across_var : 1.8699944451686599
+2023-07-05 19:28:37,659 - trainer - INFO -     val_within_var : 0.4573155477643013
+2023-07-05 19:28:38,650 - trainer - INFO -     epoch          : 30
+2023-07-05 19:28:38,650 - trainer - INFO -     loss           : 29.692483711242676
+2023-07-05 19:28:38,650 - trainer - INFO -     PEHE           : 0.2171126753091812
+2023-07-05 19:28:38,650 - trainer - INFO -     ATE            : 0.03583502769470215
+2023-07-05 19:28:38,650 - trainer - INFO -     RMSE           : 0.48434826731681824
+2023-07-05 19:28:38,650 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:38,650 - trainer - INFO -     counts         : [97, 235, 120, 52, 96]
+2023-07-05 19:28:38,650 - trainer - INFO -     within_var     : 0.29357709512114527
+2023-07-05 19:28:38,650 - trainer - INFO -     across_var     : 1.7242197447084984
+2023-07-05 19:28:38,650 - trainer - INFO -     val_loss       : 18.676613807678223
+2023-07-05 19:28:38,651 - trainer - INFO -     val_PEHE       : 0.17529499530792236
+2023-07-05 19:28:38,651 - trainer - INFO -     val_ATE        : 0.025995969772338867
+2023-07-05 19:28:38,651 - trainer - INFO -     val_RMSE       : 0.4240012764930725
+2023-07-05 19:28:38,651 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:38,651 - trainer - INFO -     val_counts     : [13, 87, 67, 11, 22]
+2023-07-05 19:28:38,651 - trainer - INFO -     val_across_var : 1.5930399318467292
+2023-07-05 19:28:38,651 - trainer - INFO -     val_within_var : 0.27510945647954943
+2023-07-05 19:28:39,553 - trainer - INFO -     epoch          : 40
+2023-07-05 19:28:39,553 - trainer - INFO -     loss           : 20.148573303222655
+2023-07-05 19:28:39,553 - trainer - INFO -     PEHE           : 0.1714334934949875
+2023-07-05 19:28:39,554 - trainer - INFO -     ATE            : 0.0012557506561279297
+2023-07-05 19:28:39,554 - trainer - INFO -     RMSE           : 0.3964831233024597
+2023-07-05 19:28:39,554 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:39,554 - trainer - INFO -     counts         : [103, 236, 93, 84, 84]
+2023-07-05 19:28:39,554 - trainer - INFO -     within_var     : 0.25846596211194994
+2023-07-05 19:28:39,554 - trainer - INFO -     across_var     : 1.7678623076646864
+2023-07-05 19:28:39,554 - trainer - INFO -     val_loss       : 12.001143276691437
+2023-07-05 19:28:39,554 - trainer - INFO -     val_PEHE       : 0.13234767317771912
+2023-07-05 19:28:39,554 - trainer - INFO -     val_ATE        : 0.028870582580566406
+2023-07-05 19:28:39,554 - trainer - INFO -     val_RMSE       : 0.3404778838157654
+2023-07-05 19:28:39,554 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:39,554 - trainer - INFO -     val_counts     : [16, 84, 53, 24, 23]
+2023-07-05 19:28:39,554 - trainer - INFO -     val_across_var : 1.6846704200045999
+2023-07-05 19:28:39,554 - trainer - INFO -     val_within_var : 0.22734958902001381
+2023-07-05 19:28:40,477 - trainer - INFO -     epoch          : 50
+2023-07-05 19:28:40,477 - trainer - INFO -     loss           : 12.055298662185669
+2023-07-05 19:28:40,477 - trainer - INFO -     PEHE           : 0.11498384922742844
+2023-07-05 19:28:40,477 - trainer - INFO -     ATE            : 0.026077985763549805
+2023-07-05 19:28:40,477 - trainer - INFO -     RMSE           : 0.3011600077152252
+2023-07-05 19:28:40,477 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:40,477 - trainer - INFO -     counts         : [89, 182, 142, 103, 84]
+2023-07-05 19:28:40,477 - trainer - INFO -     within_var     : 0.22062756195664407
+2023-07-05 19:28:40,477 - trainer - INFO -     across_var     : 2.0347277112017346
+2023-07-05 19:28:40,477 - trainer - INFO -     val_loss       : 5.758910536766052
+2023-07-05 19:28:40,478 - trainer - INFO -     val_PEHE       : 0.05761918053030968
+2023-07-05 19:28:40,478 - trainer - INFO -     val_ATE        : 0.005959510803222656
+2023-07-05 19:28:40,478 - trainer - INFO -     val_RMSE       : 0.22618204355239868
+2023-07-05 19:28:40,478 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:40,478 - trainer - INFO -     val_counts     : [21, 70, 50, 34, 25]
+2023-07-05 19:28:40,478 - trainer - INFO -     val_across_var : 1.9673643221697692
+2023-07-05 19:28:40,478 - trainer - INFO -     val_within_var : 0.15595855377614498
+2023-07-05 19:28:41,402 - trainer - INFO -     epoch          : 60
+2023-07-05 19:28:41,403 - trainer - INFO -     loss           : 8.463611936569214
+2023-07-05 19:28:41,403 - trainer - INFO -     PEHE           : 0.07593505829572678
+2023-07-05 19:28:41,403 - trainer - INFO -     ATE            : 0.021312236785888672
+2023-07-05 19:28:41,403 - trainer - INFO -     RMSE           : 0.24402578175067902
+2023-07-05 19:28:41,403 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:41,403 - trainer - INFO -     counts         : [102, 216, 104, 108, 70]
+2023-07-05 19:28:41,403 - trainer - INFO -     within_var     : 0.16741073578596116
+2023-07-05 19:28:41,403 - trainer - INFO -     across_var     : 1.947106050493644
+2023-07-05 19:28:41,403 - trainer - INFO -     val_loss       : 4.466807514429092
+2023-07-05 19:28:41,403 - trainer - INFO -     val_PEHE       : 0.053238801658153534
+2023-07-05 19:28:41,403 - trainer - INFO -     val_ATE        : 0.0668034553527832
+2023-07-05 19:28:41,403 - trainer - INFO -     val_RMSE       : 0.20092801749706268
+2023-07-05 19:28:41,403 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:41,403 - trainer - INFO -     val_counts     : [20, 71, 54, 27, 28]
+2023-07-05 19:28:41,403 - trainer - INFO -     val_across_var : 1.9731386352857385
+2023-07-05 19:28:41,403 - trainer - INFO -     val_within_var : 0.1101411934942007
+2023-07-05 19:28:42,458 - trainer - INFO -     epoch          : 70
+2023-07-05 19:28:42,458 - trainer - INFO -     loss           : 6.639738845825195
+2023-07-05 19:28:42,458 - trainer - INFO -     PEHE           : 0.06472814083099365
+2023-07-05 19:28:42,458 - trainer - INFO -     ATE            : 0.00788569450378418
+2023-07-05 19:28:42,458 - trainer - INFO -     RMSE           : 0.2120363563299179
+2023-07-05 19:28:42,458 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:42,458 - trainer - INFO -     counts         : [99, 206, 108, 104, 83]
+2023-07-05 19:28:42,458 - trainer - INFO -     within_var     : 0.1580608792603016
+2023-07-05 19:28:42,458 - trainer - INFO -     across_var     : 2.0028491433859337
+2023-07-05 19:28:42,458 - trainer - INFO -     val_loss       : 3.548071801662445
+2023-07-05 19:28:42,458 - trainer - INFO -     val_PEHE       : 0.04290485009551048
+2023-07-05 19:28:42,458 - trainer - INFO -     val_ATE        : 0.018354415893554688
+2023-07-05 19:28:42,458 - trainer - INFO -     val_RMSE       : 0.1712263822555542
+2023-07-05 19:28:42,458 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:42,458 - trainer - INFO -     val_counts     : [19, 71, 60, 21, 29]
+2023-07-05 19:28:42,459 - trainer - INFO -     val_across_var : 1.9670596679405796
+2023-07-05 19:28:42,459 - trainer - INFO -     val_within_var : 0.0985400103032589
+2023-07-05 19:28:43,367 - trainer - INFO -     epoch          : 80
+2023-07-05 19:28:43,367 - trainer - INFO -     loss           : 5.776571595668793
+2023-07-05 19:28:43,367 - trainer - INFO -     PEHE           : 0.05276785045862198
+2023-07-05 19:28:43,367 - trainer - INFO -     ATE            : 0.040496110916137695
+2023-07-05 19:28:43,367 - trainer - INFO -     RMSE           : 0.19821149110794067
+2023-07-05 19:28:43,367 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:43,367 - trainer - INFO -     counts         : [82, 215, 117, 99, 87]
+2023-07-05 19:28:43,367 - trainer - INFO -     within_var     : 0.10967535860836505
+2023-07-05 19:28:43,367 - trainer - INFO -     across_var     : 1.933933847044543
+2023-07-05 19:28:43,367 - trainer - INFO -     val_loss       : 3.344492092728615
+2023-07-05 19:28:43,367 - trainer - INFO -     val_PEHE       : 0.04264431074261665
+2023-07-05 19:28:43,367 - trainer - INFO -     val_ATE        : 0.06514668464660645
+2023-07-05 19:28:43,367 - trainer - INFO -     val_RMSE       : 0.16998016834259033
+2023-07-05 19:28:43,367 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:43,367 - trainer - INFO -     val_counts     : [18, 71, 62, 20, 29]
+2023-07-05 19:28:43,367 - trainer - INFO -     val_across_var : 1.9510423018351504
+2023-07-05 19:28:43,367 - trainer - INFO -     val_within_var : 0.09280205518007278
+2023-07-05 19:28:44,392 - trainer - INFO -     epoch          : 90
+2023-07-05 19:28:44,393 - trainer - INFO -     loss           : 5.059617209434509
+2023-07-05 19:28:44,393 - trainer - INFO -     PEHE           : 0.04900077357888222
+2023-07-05 19:28:44,393 - trainer - INFO -     ATE            : 0.009322166442871094
+2023-07-05 19:28:44,393 - trainer - INFO -     RMSE           : 0.18421004712581635
+2023-07-05 19:28:44,393 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:44,393 - trainer - INFO -     counts         : [86, 212, 114, 102, 86]
+2023-07-05 19:28:44,393 - trainer - INFO -     within_var     : 0.10342566445469856
+2023-07-05 19:28:44,393 - trainer - INFO -     across_var     : 1.9665480264350321
+2023-07-05 19:28:44,393 - trainer - INFO -     val_loss       : 3.5899993777275085
+2023-07-05 19:28:44,393 - trainer - INFO -     val_PEHE       : 0.043360453099012375
+2023-07-05 19:28:44,393 - trainer - INFO -     val_ATE        : 0.09459209442138672
+2023-07-05 19:28:44,393 - trainer - INFO -     val_RMSE       : 0.17397356033325195
+2023-07-05 19:28:44,394 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:44,394 - trainer - INFO -     val_counts     : [20, 71, 52, 28, 29]
+2023-07-05 19:28:44,394 - trainer - INFO -     val_across_var : 1.99171463838903
+2023-07-05 19:28:44,394 - trainer - INFO -     val_within_var : 0.09318072833120823
+2023-07-05 19:28:45,387 - trainer - INFO -     epoch          : 100
+2023-07-05 19:28:45,388 - trainer - INFO -     loss           : 4.613251328468323
+2023-07-05 19:28:45,388 - trainer - INFO -     PEHE           : 0.04751165956258774
+2023-07-05 19:28:45,388 - trainer - INFO -     ATE            : 0.014441490173339844
+2023-07-05 19:28:45,388 - trainer - INFO -     RMSE           : 0.17582660913467407
+2023-07-05 19:28:45,388 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:45,388 - trainer - INFO -     counts         : [79, 209, 119, 100, 93]
+2023-07-05 19:28:45,388 - trainer - INFO -     within_var     : 0.1137330524623394
+2023-07-05 19:28:45,388 - trainer - INFO -     across_var     : 1.9554079393543133
+2023-07-05 19:28:45,388 - trainer - INFO -     val_loss       : 2.962182894349098
+2023-07-05 19:28:45,388 - trainer - INFO -     val_PEHE       : 0.03276996687054634
+2023-07-05 19:28:45,388 - trainer - INFO -     val_ATE        : 0.013801097869873047
+2023-07-05 19:28:45,388 - trainer - INFO -     val_RMSE       : 0.15453000366687775
+2023-07-05 19:28:45,388 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:45,388 - trainer - INFO -     val_counts     : [22, 71, 53, 25, 29]
+2023-07-05 19:28:45,388 - trainer - INFO -     val_across_var : 2.004399343246155
+2023-07-05 19:28:45,388 - trainer - INFO -     val_within_var : 0.09283021613955497
+2023-07-05 19:28:46,350 - trainer - INFO -     epoch          : 110
+2023-07-05 19:28:46,350 - trainer - INFO -     loss           : 4.328040111064911
+2023-07-05 19:28:46,350 - trainer - INFO -     PEHE           : 0.04337350279092789
+2023-07-05 19:28:46,350 - trainer - INFO -     ATE            : 0.02809453010559082
+2023-07-05 19:28:46,350 - trainer - INFO -     RMSE           : 0.1691577136516571
+2023-07-05 19:28:46,350 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:46,350 - trainer - INFO -     counts         : [84, 213, 124, 91, 88]
+2023-07-05 19:28:46,350 - trainer - INFO -     within_var     : 0.09625306949019433
+2023-07-05 19:28:46,350 - trainer - INFO -     across_var     : 1.95384522788273
+2023-07-05 19:28:46,350 - trainer - INFO -     val_loss       : 3.076719805598259
+2023-07-05 19:28:46,350 - trainer - INFO -     val_PEHE       : 0.032135892659425735
+2023-07-05 19:28:46,350 - trainer - INFO -     val_ATE        : 0.03998732566833496
+2023-07-05 19:28:46,350 - trainer - INFO -     val_RMSE       : 0.16044498980045319
+2023-07-05 19:28:46,350 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:46,350 - trainer - INFO -     val_counts     : [21, 71, 57, 22, 29]
+2023-07-05 19:28:46,350 - trainer - INFO -     val_across_var : 1.9811519377421427
+2023-07-05 19:28:46,350 - trainer - INFO -     val_within_var : 0.0942375835031271
+2023-07-05 19:28:47,315 - trainer - INFO -     epoch          : 120
+2023-07-05 19:28:47,315 - trainer - INFO -     loss           : 4.042889881134033
+2023-07-05 19:28:47,315 - trainer - INFO -     PEHE           : 0.04110991954803467
+2023-07-05 19:28:47,315 - trainer - INFO -     ATE            : 0.009828805923461914
+2023-07-05 19:28:47,315 - trainer - INFO -     RMSE           : 0.16118372976779938
+2023-07-05 19:28:47,315 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:47,316 - trainer - INFO -     counts         : [77, 209, 125, 98, 91]
+2023-07-05 19:28:47,316 - trainer - INFO -     within_var     : 0.10070563107728958
+2023-07-05 19:28:47,316 - trainer - INFO -     across_var     : 1.9546564420976982
+2023-07-05 19:28:47,316 - trainer - INFO -     val_loss       : 2.539126396179199
+2023-07-05 19:28:47,316 - trainer - INFO -     val_PEHE       : 0.029082171618938446
+2023-07-05 19:28:47,316 - trainer - INFO -     val_ATE        : 0.029948711395263672
+2023-07-05 19:28:47,316 - trainer - INFO -     val_RMSE       : 0.13865594565868378
+2023-07-05 19:28:47,316 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:47,316 - trainer - INFO -     val_counts     : [22, 71, 56, 22, 29]
+2023-07-05 19:28:47,316 - trainer - INFO -     val_across_var : 1.9923376749553288
+2023-07-05 19:28:47,316 - trainer - INFO -     val_within_var : 0.09259459301829338
+2023-07-05 19:28:48,257 - trainer - INFO -     epoch          : 130
+2023-07-05 19:28:48,257 - trainer - INFO -     loss           : 3.918340802192688
+2023-07-05 19:28:48,257 - trainer - INFO -     PEHE           : 0.0398884154856205
+2023-07-05 19:28:48,257 - trainer - INFO -     ATE            : 0.02817058563232422
+2023-07-05 19:28:48,257 - trainer - INFO -     RMSE           : 0.15870548784732819
+2023-07-05 19:28:48,257 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:48,258 - trainer - INFO -     counts         : [78, 212, 119, 102, 89]
+2023-07-05 19:28:48,258 - trainer - INFO -     within_var     : 0.10095040276646614
+2023-07-05 19:28:48,258 - trainer - INFO -     across_var     : 1.9492869333029852
+2023-07-05 19:28:48,258 - trainer - INFO -     val_loss       : 2.59042127430439
+2023-07-05 19:28:48,258 - trainer - INFO -     val_PEHE       : 0.028214354068040848
+2023-07-05 19:28:48,258 - trainer - INFO -     val_ATE        : 0.010244131088256836
+2023-07-05 19:28:48,258 - trainer - INFO -     val_RMSE       : 0.1402783840894699
+2023-07-05 19:28:48,258 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:48,258 - trainer - INFO -     val_counts     : [22, 71, 59, 19, 29]
+2023-07-05 19:28:48,258 - trainer - INFO -     val_across_var : 1.975593208453083
+2023-07-05 19:28:48,258 - trainer - INFO -     val_within_var : 0.09135725721716881
+2023-07-05 19:28:49,210 - trainer - INFO -     epoch          : 140
+2023-07-05 19:28:49,210 - trainer - INFO -     loss           : 3.5155908107757567
+2023-07-05 19:28:49,210 - trainer - INFO -     PEHE           : 0.039186399430036545
+2023-07-05 19:28:49,210 - trainer - INFO -     ATE            : 0.021075963973999023
+2023-07-05 19:28:49,210 - trainer - INFO -     RMSE           : 0.1479634940624237
+2023-07-05 19:28:49,210 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:49,211 - trainer - INFO -     counts         : [86, 207, 125, 90, 92]
+2023-07-05 19:28:49,211 - trainer - INFO -     within_var     : 0.10254833661019802
+2023-07-05 19:28:49,211 - trainer - INFO -     across_var     : 1.9856839833150253
+2023-07-05 19:28:49,211 - trainer - INFO -     val_loss       : 2.5832261592149734
+2023-07-05 19:28:49,211 - trainer - INFO -     val_PEHE       : 0.029182277619838715
+2023-07-05 19:28:49,211 - trainer - INFO -     val_ATE        : 0.0323338508605957
+2023-07-05 19:28:49,211 - trainer - INFO -     val_RMSE       : 0.13812531530857086
+2023-07-05 19:28:49,211 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:49,211 - trainer - INFO -     val_counts     : [22, 71, 58, 20, 29]
+2023-07-05 19:28:49,211 - trainer - INFO -     val_across_var : 1.9843347712574402
+2023-07-05 19:28:49,211 - trainer - INFO -     val_within_var : 0.09308404102921486
+2023-07-05 19:28:50,138 - trainer - INFO -     epoch          : 150
+2023-07-05 19:28:50,139 - trainer - INFO -     loss           : 3.4447078466415406
+2023-07-05 19:28:50,139 - trainer - INFO -     PEHE           : 0.03552870452404022
+2023-07-05 19:28:50,139 - trainer - INFO -     ATE            : 0.027180910110473633
+2023-07-05 19:28:50,139 - trainer - INFO -     RMSE           : 0.14554589986801147
+2023-07-05 19:28:50,139 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:50,139 - trainer - INFO -     counts         : [80, 210, 134, 86, 90]
+2023-07-05 19:28:50,139 - trainer - INFO -     within_var     : 0.10012957267463207
+2023-07-05 19:28:50,139 - trainer - INFO -     across_var     : 1.945353330859725
+2023-07-05 19:28:50,139 - trainer - INFO -     val_loss       : 2.470811679959297
+2023-07-05 19:28:50,139 - trainer - INFO -     val_PEHE       : 0.027341799810528755
+2023-07-05 19:28:50,139 - trainer - INFO -     val_ATE        : 0.0211794376373291
+2023-07-05 19:28:50,139 - trainer - INFO -     val_RMSE       : 0.13177314400672913
+2023-07-05 19:28:50,139 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:50,139 - trainer - INFO -     val_counts     : [22, 71, 58, 20, 29]
+2023-07-05 19:28:50,139 - trainer - INFO -     val_across_var : 1.9843347712574402
+2023-07-05 19:28:50,139 - trainer - INFO -     val_within_var : 0.09308404102921486
+2023-07-05 19:28:51,061 - trainer - INFO -     epoch          : 160
+2023-07-05 19:28:51,061 - trainer - INFO -     loss           : 3.21476172208786
+2023-07-05 19:28:51,061 - trainer - INFO -     PEHE           : 0.033169765025377274
+2023-07-05 19:28:51,061 - trainer - INFO -     ATE            : 0.0050029754638671875
+2023-07-05 19:28:51,061 - trainer - INFO -     RMSE           : 0.13988500833511353
+2023-07-05 19:28:51,061 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:51,061 - trainer - INFO -     counts         : [82, 208, 130, 89, 91]
+2023-07-05 19:28:51,061 - trainer - INFO -     within_var     : 0.09687632881104946
+2023-07-05 19:28:51,061 - trainer - INFO -     across_var     : 1.965082985824497
+2023-07-05 19:28:51,061 - trainer - INFO -     val_loss       : 2.268835961818695
+2023-07-05 19:28:51,061 - trainer - INFO -     val_PEHE       : 0.029302263632416725
+2023-07-05 19:28:51,061 - trainer - INFO -     val_ATE        : 0.017178773880004883
+2023-07-05 19:28:51,061 - trainer - INFO -     val_RMSE       : 0.12788614630699158
+2023-07-05 19:28:51,061 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:51,061 - trainer - INFO -     val_counts     : [17, 71, 63, 20, 29]
+2023-07-05 19:28:51,061 - trainer - INFO -     val_across_var : 1.9138292624759312
+2023-07-05 19:28:51,061 - trainer - INFO -     val_within_var : 0.08179315328598022
+2023-07-05 19:28:51,949 - trainer - INFO -     epoch          : 170
+2023-07-05 19:28:51,950 - trainer - INFO -     loss           : 3.1800936460494995
+2023-07-05 19:28:51,950 - trainer - INFO -     PEHE           : 0.033170826733112335
+2023-07-05 19:28:51,950 - trainer - INFO -     ATE            : 0.002636432647705078
+2023-07-05 19:28:51,950 - trainer - INFO -     RMSE           : 0.1381719559431076
+2023-07-05 19:28:51,950 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:51,950 - trainer - INFO -     counts         : [76, 206, 128, 95, 95]
+2023-07-05 19:28:51,950 - trainer - INFO -     within_var     : 0.09620530381798745
+2023-07-05 19:28:51,950 - trainer - INFO -     across_var     : 1.9702349943459896
+2023-07-05 19:28:51,950 - trainer - INFO -     val_loss       : 2.278481736779213
+2023-07-05 19:28:51,950 - trainer - INFO -     val_PEHE       : 0.027227144688367844
+2023-07-05 19:28:51,950 - trainer - INFO -     val_ATE        : 0.02264404296875
+2023-07-05 19:28:51,950 - trainer - INFO -     val_RMSE       : 0.1253606528043747
+2023-07-05 19:28:51,950 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:51,950 - trainer - INFO -     val_counts     : [18, 71, 63, 19, 29]
+2023-07-05 19:28:51,950 - trainer - INFO -     val_across_var : 1.9207405427438835
+2023-07-05 19:28:51,950 - trainer - INFO -     val_within_var : 0.0853245820850134
+2023-07-05 19:28:52,925 - trainer - INFO -     epoch          : 180
+2023-07-05 19:28:52,925 - trainer - INFO -     loss           : 3.0264629125595093
+2023-07-05 19:28:52,925 - trainer - INFO -     PEHE           : 0.033429525792598724
+2023-07-05 19:28:52,925 - trainer - INFO -     ATE            : 0.021470308303833008
+2023-07-05 19:28:52,925 - trainer - INFO -     RMSE           : 0.135020911693573
+2023-07-05 19:28:52,925 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:52,925 - trainer - INFO -     counts         : [78, 209, 131, 91, 91]
+2023-07-05 19:28:52,925 - trainer - INFO -     within_var     : 0.09100477695465088
+2023-07-05 19:28:52,925 - trainer - INFO -     across_var     : 1.9534069524368782
+2023-07-05 19:28:52,925 - trainer - INFO -     val_loss       : 2.1934745609760284
+2023-07-05 19:28:52,925 - trainer - INFO -     val_PEHE       : 0.025912389159202576
+2023-07-05 19:28:52,925 - trainer - INFO -     val_ATE        : 0.009736776351928711
+2023-07-05 19:28:52,925 - trainer - INFO -     val_RMSE       : 0.12215665727853775
+2023-07-05 19:28:52,925 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:52,926 - trainer - INFO -     val_counts     : [18, 71, 63, 19, 29]
+2023-07-05 19:28:52,926 - trainer - INFO -     val_across_var : 1.9207405427438835
+2023-07-05 19:28:52,926 - trainer - INFO -     val_within_var : 0.0853245820850134
+2023-07-05 19:28:53,883 - trainer - INFO -     epoch          : 190
+2023-07-05 19:28:53,883 - trainer - INFO -     loss           : 2.757440984249115
+2023-07-05 19:28:53,884 - trainer - INFO -     PEHE           : 0.030221322551369667
+2023-07-05 19:28:53,884 - trainer - INFO -     ATE            : 0.01012563705444336
+2023-07-05 19:28:53,884 - trainer - INFO -     RMSE           : 0.1263829469680786
+2023-07-05 19:28:53,884 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:53,884 - trainer - INFO -     counts         : [83, 205, 140, 78, 94]
+2023-07-05 19:28:53,884 - trainer - INFO -     within_var     : 0.0995228871703148
+2023-07-05 19:28:53,884 - trainer - INFO -     across_var     : 1.9721193407737272
+2023-07-05 19:28:53,884 - trainer - INFO -     val_loss       : 2.3164538145065308
+2023-07-05 19:28:53,884 - trainer - INFO -     val_PEHE       : 0.025994734838604927
+2023-07-05 19:28:53,884 - trainer - INFO -     val_ATE        : 0.005209207534790039
+2023-07-05 19:28:53,884 - trainer - INFO -     val_RMSE       : 0.1278553456068039
+2023-07-05 19:28:53,884 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:53,884 - trainer - INFO -     val_counts     : [17, 71, 63, 20, 29]
+2023-07-05 19:28:53,884 - trainer - INFO -     val_across_var : 1.9138292624759312
+2023-07-05 19:28:53,884 - trainer - INFO -     val_within_var : 0.08179315328598022
+2023-07-05 19:28:54,871 - trainer - INFO -     epoch          : 200
+2023-07-05 19:28:54,871 - trainer - INFO -     loss           : 3.1311570405960083
+2023-07-05 19:28:54,872 - trainer - INFO -     PEHE           : 0.032955627888441086
+2023-07-05 19:28:54,872 - trainer - INFO -     ATE            : 0.0063169002532958984
+2023-07-05 19:28:54,872 - trainer - INFO -     RMSE           : 0.13857460021972656
+2023-07-05 19:28:54,872 - trainer - INFO -     clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:54,872 - trainer - INFO -     counts         : [88, 207, 139, 74, 92]
+2023-07-05 19:28:54,872 - trainer - INFO -     within_var     : 0.09674308672547341
+2023-07-05 19:28:54,872 - trainer - INFO -     across_var     : 1.9753934922749388
+2023-07-05 19:28:54,872 - trainer - INFO -     val_loss       : 2.2725932896137238
+2023-07-05 19:28:54,872 - trainer - INFO -     val_PEHE       : 0.027125369757413864
+2023-07-05 19:28:54,872 - trainer - INFO -     val_ATE        : 0.022090673446655273
+2023-07-05 19:28:54,872 - trainer - INFO -     val_RMSE       : 0.12611426413059235
+2023-07-05 19:28:54,872 - trainer - INFO -     val_clusters   : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:54,872 - trainer - INFO -     val_counts     : [24, 71, 58, 18, 29]
+2023-07-05 19:28:54,872 - trainer - INFO -     val_across_var : 2.0017145049362077
+2023-07-05 19:28:54,872 - trainer - INFO -     val_within_var : 0.09627732373774052
+2023-07-05 19:28:54,973 - trainer - INFO - Validation performance didn't improve for 20 epochs. Training stops.
+2023-07-05 19:28:54,978 - trainer - INFO - Saving current best: model_best.pth ...
+2023-07-05 19:28:55,019 - trainer - INFO - ====================================================================================================
+2023-07-05 19:28:55,020 - trainer - INFO - Inference is completed
+2023-07-05 19:28:55,020 - trainer - INFO - ----------------------------------------------------------------------------------------------------
+2023-07-05 19:28:55,020 - trainer - INFO -     train_loss          : 2.0391167879104612
+2023-07-05 19:28:55,020 - trainer - INFO -     train_PEHE          : 0.023203404620289803
+2023-07-05 19:28:55,020 - trainer - INFO -     train_ATE           : 0.010180234909057617
+2023-07-05 19:28:55,020 - trainer - INFO -     train_RMSE          : 0.10333315283060074
+2023-07-05 19:28:55,020 - trainer - INFO -     train_clusters      : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:55,020 - trainer - INFO -     train_counts        : [75, 204, 167, 56, 98]
+2023-07-05 19:28:55,020 - trainer - INFO -     train_across_var    : 1.9200842176758353
+2023-07-05 19:28:55,020 - trainer - INFO -     train_within_var    : 0.07936990708112716
+2023-07-05 19:28:55,020 - trainer - INFO -     val_loss            : 2.1934745609760284
+2023-07-05 19:28:55,020 - trainer - INFO -     val_PEHE            : 0.025912389159202576
+2023-07-05 19:28:55,020 - trainer - INFO -     val_ATE             : 0.009736776351928711
+2023-07-05 19:28:55,020 - trainer - INFO -     val_RMSE            : 0.12215665727853775
+2023-07-05 19:28:55,020 - trainer - INFO -     val_clusters        : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:55,020 - trainer - INFO -     val_counts          : [18, 71, 63, 19, 29]
+2023-07-05 19:28:55,020 - trainer - INFO -     val_across_var      : 1.9207405427438835
+2023-07-05 19:28:55,020 - trainer - INFO -     val_within_var      : 0.0853245820850134
+2023-07-05 19:28:55,020 - trainer - INFO -     test_loss           : 2.417506590485573
+2023-07-05 19:28:55,020 - trainer - INFO -     test_PEHE           : 0.025738460943102837
+2023-07-05 19:28:55,020 - trainer - INFO -     test_ATE            : 0.01042318344116211
+2023-07-05 19:28:55,020 - trainer - INFO -     test_RMSE           : 0.13138417899608612
+2023-07-05 19:28:55,020 - trainer - INFO -     test_clusters       : [0.0, 1.0, 2.0, 3.0, 4.0]
+2023-07-05 19:28:55,021 - trainer - INFO -     test_counts         : [18, 81, 46, 24, 31]
+2023-07-05 19:28:55,021 - trainer - INFO -     test_across_var     : 1.8785921368715073
+2023-07-05 19:28:55,021 - trainer - INFO -     test_within_var     : 0.06984963165596128
+2023-07-05 19:28:55,021 - trainer - INFO - ====================================================================================================
