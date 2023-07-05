@@ -108,6 +108,7 @@ Early stopping is applied to all models, where training stops if the loss on val
 </p>
 
 _* Experiments were conducted using a computing cluster consisting of 42 nodes, each equipped with dual Intel Xeon 8268 processors, 384GB RAM, and dual NVIDIA Volta V100 GPUs with 32GB memory._
+_*Pre-trained SubgroupTE on the synthetic dataset is provided in the 'saved' folder._
 
 
 
