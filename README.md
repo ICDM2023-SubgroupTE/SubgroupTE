@@ -103,7 +103,9 @@ The complexity analysis involves determining the training time and the number of
 
 Early stopping is applied to all models, where training stops if the loss on validation data does not decrease for 20 epochs. The number of epochs represents training epochs.
 
-<img width="591" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/8ac271c8-3b97-42fd-bde1-0bb8593064a2">
+<p align="center">
+<img width="600" alt="image" src="https://github.com/ICDM2023-SubgroupTE/SubgroupTE/assets/54523717/8ac271c8-3b97-42fd-bde1-0bb8593064a2">
+</p>
 
 
 
