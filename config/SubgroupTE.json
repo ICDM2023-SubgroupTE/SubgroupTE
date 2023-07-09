@@ -11,10 +11,10 @@
         "emb_dim": 200,
         "out_dim": 200,
         "n_layers": 2,
-        "init": "kmeans++"
+        "init": "kmeans++",
         "alpha": 1,
         "gamma": 1,
-        "beta": 1,
+        "beta": 1
     },
     "optimizer": {
         "type": "SGD",
