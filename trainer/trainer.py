@@ -62,7 +62,7 @@ class Trainer(BaseTrainer):
             self.optimizer.step()
             self.metrics.update('loss', loss.item())
             
-            if index % self.log_step == 0:
+            if idx % self.log_step == 0:
                 self.logger.debug('Train Epoch: {} {} Loss: {:.6f} '.format(
                     epoch,
                     self._progress(idx),
